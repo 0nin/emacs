@@ -8,27 +8,12 @@
 (defun my:ac-c-header-init ()
   (require 'auto-complete-c-headers)
   (add-to-list 'ac-sources 'ac-source-c-headers)
-  ;; (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include")
+ ;; (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include")
 )
 ; now let's call this function from c/c++ hooks
 (add-hook 'c++-mode-hook 'my:ac-c-header-init)
 (add-hook 'c-mode-hook 'my:ac-c-header-init)
 
-;; ; start flymake-google-cpplint-load
-;; ; let's define a function for flymake initialization
-;; (defun my:flymake-google-init () 
-;;   (require 'flymake-google-cpplint)
-;;   (custom-set-variables
-;;    '(flymake-google-cpplint-command "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/cpplint"))
-;;   (flymake-google-cpplint-load)
-;; )
-;; (add-hook 'c-mode-hook 'my:flymake-google-init)
-;; (add-hook 'c++-mode-hook 'my:flymake-google-init)
-
-;; ; start google-c-style with emacs
-;; (require 'google-c-style)
-;; (add-hook 'c-mode-common-hook 'google-set-c-style)
-;; (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 ; turn on Semantic
 (semantic-mode 1)
@@ -47,10 +32,12 @@
 ;;                       :include-path '("v:/mlx/")
 ;;                       :include-path '("v:/workspace_avs/exxxx/Configurations/FT/"))
 ; you can use system-include-path for setting up the system header file locations.
+                                        ; turn on automatic reparsing of open buffers in semantic
+; create a project for our program.
+(ede-cpp-root-project "exxxxx" :file "/home/onin/xta-tool/src/main.cpp"
+                      )
+; you can use system-include-path for setting up the system header file locations.
 ; turn on automatic reparsing of open buffers in semantic
 (global-semantic-idle-scheduler-mode 1)
-
-
-
 
 (provide 'custom-autocomplete)

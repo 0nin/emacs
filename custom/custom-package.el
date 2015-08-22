@@ -9,7 +9,9 @@
     company-c-headers
     company-irony
     auto-complete
-    ;; auto-complete-c-headers
+    auto-complete-c-headers
+    flycheck
+    flycheck-irony
     ggtags
     yasnippet
     sr-speedbar
@@ -17,7 +19,10 @@
     elscreen
     ecb
     eide
-    color-theme))
+    org
+    color-theme
+    flymake-google-cpplint
+    google-c-style))
 
 (defun packages-installed-p ()
     "Packages availability checking."

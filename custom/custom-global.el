@@ -29,4 +29,12 @@
 (show-paren-mode t) ;; включить выделение выражений между {},[],()
 (setq show-paren-style 'expression) ;; выделить цветом выражения между {},[],()
 
+;; IDO plugin
+(require 'ido)
+(ido-mode                      t)
+(icomplete-mode                t)
+(ido-everywhere                t)
+(setq ido-vitrual-buffers      t)
+(setq ido-enable-flex-matching t)
+
 (provide 'custom-global)

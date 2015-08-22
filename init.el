@@ -14,13 +14,18 @@
 
 (require 'custom-package)
 (require 'custom-global)
+(require 'custom-bookmark)
 (require 'cc-mode)
-(require 'company)
+;; (require 'company)
 (require 'custom-ggtags)
-(require 'custom-company)
-(require 'custom-semantic)
-(require 'custom-company-c-headers)
+;; (require 'custom-company)
+;; (require 'custom-company-c-headers)
 (require 'custom-autocomplete)
+;; (require 'custom-autocomplete-c-headers)
+(require 'custom-irony)
+;; (require 'custom-semantic)
+;; (require 'custom-flymake-google)
+(require 'custom-flycheck)
 (require 'custom-keys)
 (require 'custom-yasnippet)
 (require 'custom-imenu)
@@ -29,9 +34,16 @@
 (require 'custom-switch)
 (require 'color-theme-mac-classic)
 (color-theme-mac-classic)
-
-;; (defun create-tags (dir-name)
-;;      "Create tags file."
-;;      (interactive "DDirectory: ")
-;;      (eshell-command 
-;;       (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(completions-common-part ((t (:inherit default :foreground "red"))))
+ '(show-paren-match ((((class color) (background light)) (:background "azure2")))))

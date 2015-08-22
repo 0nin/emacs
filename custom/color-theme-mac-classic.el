@@ -85,8 +85,8 @@
      (mode-line ((t (:background "#2A358D" :foreground "#fff"))))
 
      ;; Selection highlight
-     (highlight ((t (:background "#426BEE"  ))))
-     (highline-face ((t (:background "#426BEE" ))))
+     (highlight ((t (:background "#0d2d8c"  ))))
+     (highline-face ((t (:background "#0d2d8c" ))))
 
      ;; Text Highlight
      (region ((t (:background "#E4F1FE"))))
