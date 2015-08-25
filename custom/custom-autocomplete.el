@@ -34,8 +34,7 @@
 ; you can use system-include-path for setting up the system header file locations.
                                         ; turn on automatic reparsing of open buffers in semantic
 ; create a project for our program.
-(ede-cpp-root-project "exxxxx" :file "/home/onin/xta-tool/src/main.cpp"
-                      )
+
 ; you can use system-include-path for setting up the system header file locations.
 ; turn on automatic reparsing of open buffers in semantic
 (global-semantic-idle-scheduler-mode 1)

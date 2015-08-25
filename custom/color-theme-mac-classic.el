@@ -89,7 +89,7 @@
      (highline-face ((t (:background "#0d2d8c" ))))
 
      ;; Text Highlight
-     (region ((t (:background "#E4F1FE"))))
+     ;; (region ((t (:background "#E4F1FE"))))
 
      ;; Cursor
      (text-cursor ((t (:background "aa0000" :foreground "black"))))

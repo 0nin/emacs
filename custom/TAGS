@@ -13,8 +13,9 @@ color-theme-mac-classic.el,40
 custom-autocomplete-c-headers.el,34
 (defun my:ac-c-header-init 2,101
 
-custom-autocomplete.el,47
-(defun my:add-semantic-to-autocomplete(13,322
+custom-autocomplete.el,81
+(defun my:ac-c-header-init 8,249
+(defun my:add-semantic-to-autocomplete(22,831
 
 custom-flymake.el,36
 (defun my:flymake-google-init 3,91
@@ -33,20 +34,24 @@ custom-irony.el,29
 
 custom-package.el,68
 (defvar required-packages7,193
-(defun packages-installed-p 26,514
+(defun packages-installed-p 27,523
 
-custom-semantic.el,227
+custom-semantic.el,47
 (defun my:add-semantic-to-autocomplete(20,783
-(defvar c-files-regex 40,1635
-(defun my-semantic-parse-dir 43,1766
-(defun my-semantic-parse-current-dir 73,2803
-(defun lk-parse-curdir-c 80,2994
-(defun lk-parse-dir-c 89,3202
 
 custom-switch.el,88
 (defun switch-on-elscreen(1,0
 (defun switch-on-ecb(6,75
 (defun switch-on-eide(11,143
+
+rtf-mode.el,271
+(defmacro rtf-mkface 66,2501
+(defvar rtf-loudcmds85,3493
+(defun rtf-make-loudcmd-re 95,3779
+(define-generic-mode 'rtf-modertf-mode100,3911
+(defun rtf-mode-stultify-character 169,6304
+(defun rtf-mode-fill-paragraph 173,6466
+(defun rtf-mode-setup-function 181,6777
 
 custom-yasnippet.el,0
 
@@ -67,3 +72,5 @@ custom-elscreen.el,0
 custom-company.el,0
 
 custom-company-c-headers.el,0
+
+custom-bookmark.el,0
