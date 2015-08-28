@@ -348,6 +348,19 @@
 (custom-org)
 ;; (require 'custom-switch)
 ;; ???
+;;   (add-to-list 'load-path "~/.emacs.d/emms/")
+;;         (require 'emms-setup)
+;;         (emms-standard)
+;;         (emms-default-players)
+;; (require 'emms-player-simple)
+;; (require 'emms-source-file)
+;; (require 'emms-source-playlist)
+;; (setq emms-player-list '(emms-player-mpg321
+;;                          emms-player-ogg123
+;;                          emms-player-mplayer))
+;; (setq emms-info-asynchronously nil)
+;; (setq emms-playlist-buffer-name "*Music*")
+;; ???
 (require 'color-theme-mac-classic)
 (color-theme-mac-classic)
 (nyan-mode)
