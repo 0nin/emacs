@@ -316,6 +316,23 @@
 ;;  (return t)
   )
 
+(defun custom-flymake-google ()
+  (defun my:flymake-google-init () 
+    (require 'flymake-google-cpplint)
+    (custom-set-variables
+     '(flymake-google-cpplint-command "cpplint"))
+    (flymake-google-cpplint-load)
+    )
+  (add-hook 'c-mode-hook 'my:flymake-google-init)
+  (add-hook 'c++-mode-hook 'my:flymake-google-init)
+
+                                        ; start google-c-style with emacs
+  (require 'google-c-style)
+  (add-hook 'c-mode-common-hook 'google-set-c-style)
+  (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+)
+
+
 ;; (require 'custom-package)               ;
 (custom-package)
 ;; (require 'custom-global)
@@ -337,6 +354,7 @@
 ;; (require 'custom-flymake-google)
 ;; (require 'custom-flycheck)
 (custom-flycheck)
+(custom-flymake-google)
 ;; (require 'custom-keys)
 (custom-keys)
 ;; (require 'custom-yasnippet)
