@@ -34,7 +34,9 @@
       color-theme
       nyan-mode 
       flymake-google-cpplint
-      google-c-style))
+      google-c-style
+      arduino-mode
+      multiple-cursors))
 
   (defun packages-installed-p ()
     "Packages availability checking."
@@ -346,6 +348,11 @@
 (require 'rtf-mode)
 ;; (require 'custom-org)
 (custom-org)
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;; (require 'custom-switch)
 ;; ???
 ;;   (add-to-list 'load-path "~/.emacs.d/emms/")
