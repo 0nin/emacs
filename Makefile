@@ -1,7 +1,7 @@
 RM = rm -rf
 MKDIR = mkdir
 CP = cp -R
-HOME = /home/avs
+#HOME = /home/onin
 EMACS = $(HOME)/.emacs.d
 ERGO = $(EMACS)/ergoemacs
 3RD = 3rd
@@ -16,6 +16,7 @@ install:
 	$(CP) $(TARGET) $(EMACS)
 
 	git clone $(ERGOMIRROR) $(ERGO)
+	@echo Now run emacs to complete installation!
 
 uninstall:
 	$(RM) $(EMACS) $(HOME)/.emacs
