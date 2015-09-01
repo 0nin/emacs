@@ -1,1 +1,1 @@
-# emacs-config
+# Tiny tool to quick setup my .emacs.d
