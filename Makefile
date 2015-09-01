@@ -1,29 +1,24 @@
 RM = rm -rf
 MKDIR = mkdir
-CP = cp -r
-# CPR = cp -r
-HOME = ~/
+CP = cp -R
+HOME = /home/avs
 EMACS = $(HOME)/.emacs.d
 ERGO = $(EMACS)/ergoemacs
-3RD = $(EMACS)/3rd
+3RD = 3rd
 TARGET = init.el
 ERGOMIRROR = https://github.com/0nin/ergoemacs_mirror.git
-HELPTEXT = "make install -- create .emacs.d \n make clean -- delete .emacs.d \n make help -- show this text \n"
+HELPTEXT = "make install -- create .emacs.d make clean -- delete .emacs.d make help -- show this text"
 
 install:
 	$(MKDIR) $(EMACS)
 
-	$(CP) $(3RD) $(EMACS)
+	$(CP) ./$(3RD) $(EMACS)/$(3RD)
 	$(CP) $(TARGET) $(EMACS)
 
-	cd ~/.emacs.d/
+	git clone $(ERGOMIRROR) $(ERGO)
 
-	git clone ERGOMIRROR 
-	$(CP) $(ERGO) $(EMACS)/ergoemacs
-
-clean:
-	$(RM) $(EMACS)
-	$(RM) $(HOME)/.emacs
+uninstall:
+	$(RM) $(EMACS) $(HOME)/.emacs
 
 help:
-	echo $(HELPTEXT)
+	@echo $(HELPTEXT)
