@@ -6,7 +6,7 @@ EMACS = $(HOME)/.emacs.d
 ERGO = $(EMACS)/ergoemacs
 3RD = 3rd
 TARGET = init.el
-ERGOMIRROR = https://github.com/0nin/ergoemacs_mirror.git
+ERGOMIRROR = https://github.com/0nin/ergoemacs.git
 HELPTEXT = "make install -- create .emacs.d make clean -- delete .emacs.d make help -- show this text"
 
 all:
