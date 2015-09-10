@@ -179,18 +179,15 @@
   (add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)
                                         ; turn on ede mode 
   (global-ede-mode 1)
-                                        ; create a project for our program.
+
   ;; (ede-cpp-root-project "exxxxx" :file "v:/workspace_avs/exxxx/Sources/tp.cpp"
   ;; 	        :include-path '("v:/mlx/log4cpp")
   ;;                       :include-path '("v:/mlx/include")
   ;;                       :include-path '("v:/mlx/")
   ;;                       :include-path '("v:/workspace_avs/exxxx/Configurations/FT/"))
-                                        ; you can use system-include-path for setting up the system header file locations.
-                                        ; turn on automatic reparsing of open buffers in semantic
-                                        ; create a project for our program.
 
-                                        ; you can use system-include-path for setting up the system header file locations.
-                                        ; turn on automatic reparsing of open buffers in semantic
+  (ede-cpp-root-project "81150_lbtp" :file "v:/81150/81150_final_lbtp/soft/lbtp.h"
+                      :include-path '("c:/users/avs/mlx"))
   (global-semantic-idle-scheduler-mode 1)
   )
 
@@ -348,7 +345,7 @@
 (require 'color-theme-mac-classic)
 (color-theme-mac-classic)
 (nyan-mode)
-(ecb-activate)
+;; (ecb-activate)
 ;; (require 'eide)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
