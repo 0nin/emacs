@@ -54,7 +54,6 @@
     (dolist (package required-packages)
       (unless (package-installed-p package)
         (package-install package))))
-;;  (return t)
   )
 
 
@@ -117,27 +116,42 @@
   ;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
   ;;               (ggtags-mode 1))))
 
-  (ggtags-mode 1)
+  ;; (ggtags-mode 1)
 
-  (define-key ggtags-mode-map (kbd "C-c s") 'ggtags-find-other-symbol)
-  (define-key ggtags-mode-map (kbd "C-c h") 'ggtags-view-tag-history)
-  (define-key ggtags-mode-map (kbd "C-c r") 'ggtags-find-reference)
-  (define-key ggtags-mode-map (kbd "C-c f") 'ggtags-find-file)
-  (define-key ggtags-mode-map (kbd "C-c c") 'ggtags-create-tags)
-  (define-key ggtags-mode-map (kbd "C-c u") 'ggtags-update-tags)
+  ;; (define-key ggtags-mode-map (kbd "C-c s") 'ggtags-find-other-symbol)
+  ;; (define-key ggtags-mode-map (kbd "C-c h") 'ggtags-view-tag-history)
+  ;; (define-key ggtags-mode-map (kbd "C-c r") 'ggtags-find-reference)
+  ;; (define-key ggtags-mode-map (kbd "C-c f") 'ggtags-find-file)
+  ;; (define-key ggtags-mode-map (kbd "C-c c") 'ggtags-create-tags)
+  ;; (define-key ggtags-mode-map (kbd "C-c u") 'ggtags-update-tags)
 
 
-  (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+  ;; (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
   ;; (ggtags-mode)
   )
 
 (defun custom-company ()
   ;; (require 'company)
-  (require 'company-gtags)
+  ; (require 'company-gtags)
+  (require 'cedet) ;; использую "вшитую" версию CEDET. Мне хватает...
+  (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode)
+  (semantic-mode   t)
+  (global-ede-mode t)
+
+  (require 'ede/generic)
+  (require 'semantic/ia)
+  (ede-enable-generic-projects)
   (require 'company-semantic)
   (require 'company-yasnippet)
-  ;; (add-hook 'after-init-hook 'global-company-mode)
-  ;; (add-hook 'after-init-hook 'global-company-mode)
+  (require 'semantic/bovine/gcc)
+  (require 'semantic/ia)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
   (eval-after-load 'company
     '(add-to-list 'company-backends 'company-irony))  
   ;; (delete 'company-semantic company-backends)
@@ -146,6 +160,12 @@
   ;; (define-key c-mode-map  [C-tab] 'company-complete)
   ;; (define-key c++-mode-map  [C-tab] 'company-complete)
   ;;( add-to-list 'load-path (expand-file-name "~/.emacs.d/irony-mode/elisp/"))
+  (defun my:ac-c-header-init ()
+    (require 'auto-complete-c-headers)
+    (add-to-list 'ac-sources 'ac-source-c-headers)
+    ;; (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include")
+    (semantic-mode 1)
+    (global-ede-mode t)
   )
 
 (defun custom-autocomplete ()
@@ -156,11 +176,7 @@
   (ac-config-default)
 
                                         ; let's define a function which initializes auto-complete-c-headers and gets called for c/c++ hooks
-  (defun my:ac-c-header-init ()
-    (require 'auto-complete-c-headers)
-    (add-to-list 'ac-sources 'ac-source-c-headers)
-    ;; (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include")
-    )
+ )
                                         ; now let's call this function from c/c++ hooks
   (add-hook 'c++-mode-hook 'my:ac-c-header-init)
   (add-hook 'c-mode-hook 'my:ac-c-header-init)
@@ -180,14 +196,10 @@
                                         ; turn on ede mode 
   (global-ede-mode 1)
 
-  ;; (ede-cpp-root-project "exxxxx" :file "v:/workspace_avs/exxxx/Sources/tp.cpp"
-  ;; 	        :include-path '("v:/mlx/log4cpp")
-  ;;                       :include-path '("v:/mlx/include")
-  ;;                       :include-path '("v:/mlx/")
-  ;;                       :include-path '("v:/workspace_avs/exxxx/Configurations/FT/"))
 
-  (ede-cpp-root-project "81150_lbtp" :file "v:/81150/81150_final_lbtp/soft/lbtp.h"
-                      :include-path '("c:/users/avs/mlx"))
+  ;; (ede-cpp-root-project "81150_lbtp" :file "v:/81150/81150_final_lbtp/soft/lbtp.h"
+  ;;                     :include-path '("c:/users/avs/mlx"))
+(ede-cpp-root-project "madmad2" :file "~/Documents/workspace/madmad2/src/main.cpp")
   (global-semantic-idle-scheduler-mode 1)
   )
 
@@ -217,14 +229,14 @@
   ;;     'irony-completion-at-point-async)
   ;;   (define-key irony-mode-map [remap complete-symbol]
   ;;     'irony-completion-at-point))
-
-  ;; (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+ 
+ ;; (add-hook 'irony-mode-hook 'my-irony-mode-hook)
   ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-                                        ; start google-c-style with emacs
-  (require 'google-c-style)
-  (add-hook 'c-mode-common-hook 'google-set-c-style)
-  (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+  ; start google-c-style with emacs
+  ;; (require 'google-c-style)
+  ;; (add-hook 'c-mode-common-hook 'google-set-c-style)
+  ;; (add-hook 'c-mode-common-hook 'google-make-newline-indent)
   
   )
 
@@ -305,7 +317,7 @@
   (add-hook 'c-mode-hook 'my:flymake-google-init)
   (add-hook 'c++-mode-hook 'my:flymake-google-init)
 
-                                        ; start google-c-style with emacs
+; start google-c-style with emacs
   (require 'google-c-style)
   (add-hook 'c-mode-common-hook 'google-set-c-style)
   (add-hook 'c-mode-common-hook 'google-make-newline-indent)
@@ -320,6 +332,7 @@
 (custom-ggtags)
 
 ;; (require 'custom-company)
+(custom-company)
 ;; (require 'custom-company-c-headers)
 ;; (require 'custom-autocomplete)
 
@@ -330,7 +343,7 @@
 ;; (require 'custom-semantic)
 ;; (require 'custom-flymake-google)
 (custom-flycheck)
-(custom-flymake-google)
+;; (custom-flymake-google)
 (custom-keys)
 (custom-yasnippet)
 (custom-imenu)
@@ -363,6 +376,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Terminus" :foundry "xos4" :slant normal :weight normal :height 105 :width normal))))
+ '(default ((t (:family "Anonymous Pro" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
  '(completions-common-part ((t (:inherit default :foreground "red"))))
  '(show-paren-match ((((class color) (background light)) (:background "azure2")))))
