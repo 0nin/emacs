@@ -4,11 +4,11 @@
 ;; Add comment according major mode
 (global-set-key (kbd "M-/") 'comment-dwim)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.mmf\\'" . asm-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mmf\\'" . asm-mode))
 (setq w32-pipe-read-delay 0)
 
 ;; (package-initialize)
-;; (add-to-list 'load-path "~/.emacs.d/custom")
+(add-to-list 'load-path "~/.emacs.d/custom")
 (add-to-list 'load-path "~/.emacs.d/3rd")
 
 (defun custom-package ()
@@ -87,8 +87,8 @@
   (setq frame-title-format "GNU Emacs: %b")
 
   ;; Show-paren-mode settings
-  (show-paren-mode t) ;; включить выделение выражений между {},[],()
-  (setq show-paren-style 'expression) ;; выделить цветом выражения между {},[],()
+  (show-paren-mode t) ;; {},[],()
+  (setq show-paren-style 'expression) ;; {},[],()
 
   ;; IDO plugin
   (require 'ido)
@@ -97,21 +97,17 @@
   (ido-everywhere                t)
   (setq ido-vitrual-buffers      t)
   (setq ido-enable-flex-matching t)
-  ;;   (return t)
   )
 
 (defun custom-bookmark ()
-  ;; Bookmark settings
-  (require 'bookmark)
-  (setq bookmark-save-flag t) ;; автоматически сохранять закладки в файл
-  (when (file-exists-p (concat user-emacs-directory "bookmarks"))
-    (bookmark-load bookmark-default-file t)) ;; попытаться найти и открыть файл с закладками
-  (global-set-key (kbd "<f3>") 'bookmark-set) ;; создать закладку по F3 
-  (global-set-key (kbd "<f4>") 'bookmark-jump) ;; прыгнуть на закладку по F4
-  (global-set-key (kbd "<f5>") 'bookmark-bmenu-list) ;; открыть список закладок
-  (setq bookmark-default-file (concat user-emacs-directory "bookmarks")) ;; хранить закладки в файл bookmarks в .emacs.d
-
-;; (return t)
+  ;; (require 'bookmark)
+  ;; (setq bookmark-save-flag t) ;; автоматически сохранять закладки в файл
+  ;; (when (file-exists-p (concat user-emacs-directory "bookmarks"))
+  ;;   (bookmark-load bookmark-default-file t)) ;; попытаться найти и открыть файл с закладками
+  ;; (global-set-key (kbd "<f3>") 'bookmark-set) ;; создать закладку по F3 
+  ;; (global-set-key (kbd "<f4>") 'bookmark-jump) ;; прыгнуть на закладку по F4
+  ;; (global-set-key (kbd "<f5>") 'bookmark-bmenu-list) ;; открыть список закладок
+  ;; (setq bookmark-default-file (concat user-emacs-directory "bookmarks")) ;; хранить закладки в файл bookmarks в .emacs.d
   )
 
 (defun custom-ggtags ()
@@ -132,9 +128,7 @@
 
 
   (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
-  ;; 
   ;; (ggtags-mode)
-;;   (return t)
   )
 
 (defun custom-company ()
@@ -142,23 +136,16 @@
   (require 'company-gtags)
   (require 'company-semantic)
   (require 'company-yasnippet)
-
   ;; (add-hook 'after-init-hook 'global-company-mode)
-
   ;; (add-hook 'after-init-hook 'global-company-mode)
   (eval-after-load 'company
     '(add-to-list 'company-backends 'company-irony))  
   ;; (delete 'company-semantic company-backends)
   ;; (define-key c-mode-map  [(tab)] 'company-complete)
   ;; (define-key c++-mode-map  [(tab)] 'company-complete)
-
   ;; (define-key c-mode-map  [C-tab] 'company-complete)
   ;; (define-key c++-mode-map  [C-tab] 'company-complete)
-
-                                        ; load irony-mode
   ;;( add-to-list 'load-path (expand-file-name "~/.emacs.d/irony-mode/elisp/"))
-  
-;; (return t)
   )
 
 (defun custom-autocomplete ()
@@ -177,7 +164,10 @@
                                         ; now let's call this function from c/c++ hooks
   (add-hook 'c++-mode-hook 'my:ac-c-header-init)
   (add-hook 'c-mode-hook 'my:ac-c-header-init)
-
+  (defun my-c++-mode-hook ()
+  (setq c-basic-offset 4)
+  (c-set-offset 'substatement-open 0))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
                                         ; turn on Semantic
   (semantic-mode 1)
@@ -202,7 +192,6 @@
                                         ; you can use system-include-path for setting up the system header file locations.
                                         ; turn on automatic reparsing of open buffers in semantic
   (global-semantic-idle-scheduler-mode 1)
-;;   (return t)
   )
 
 (defun custom-irony ()
@@ -240,12 +229,10 @@
   (add-hook 'c-mode-common-hook 'google-set-c-style)
   (add-hook 'c-mode-common-hook 'google-make-newline-indent)
   
-;;   (return t)
   )
 
 (defun custom-flycheck ()
   (add-hook 'after-init-hook #'global-flycheck-mode)
-  ;;   (return t)
   )
 
 (defun custom-keys ()
@@ -279,13 +266,11 @@
   (global-set-key (kbd "<f9>") 'kmacro-call-macro)
   (global-set-key (kbd "<f11>") 'ido-dired)
   (global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
-;;   (return t)
   )
 
 (defun custom-yasnippet ()
   (require 'yasnippet)
   (yas-global-mode 1)
- ;;  (return t)
   )
 
 (defun custom-imenu ()
@@ -295,7 +280,6 @@
   (setq imenu-auto-rescan      t) ;; автоматически обновлять список функций в буфере
   (setq imenu-use-popup-menu nil) ;; диалоги Imenu только в минибуфере
   (global-set-key (kbd "<f6>") 'imenu) ;; вызов Imenu на F6
-;;   (return t)
   )
 
 (defun custom-other ()
@@ -304,7 +288,6 @@
   (setq dired-recursive-deletes 'top)
   (require 'iedit)
   (global-set-key (kbd "C-c ;") 'iedit-mode)
-;;  (return t)
   )
 
 (defun custom-org ()
@@ -313,7 +296,6 @@
   (global-set-key "\C-cb" 'org-iswitchb) ;; подрежимов org-mode
   (global-set-key "\C-cl" 'org-store-link)
   (add-to-list 'auto-mode-alist '("\\.org$" . Org-mode)) ;; ассоциируем *.org файлы с org-mode
-;;  (return t)
   )
 
 (defun custom-flymake-google ()
@@ -333,38 +315,29 @@
 )
 
 
-;; (require 'custom-package)               ;
 (custom-package)
-;; (require 'custom-global)
 (custom-global)
-;; (require 'custom-bookmark)
 (custom-bookmark)
 (require 'cc-mode)
 ;; (require 'company)
-;; (require 'custom-ggtags)
 (custom-ggtags)
+
 ;; (require 'custom-company)
 ;; (require 'custom-company-c-headers)
 ;; (require 'custom-autocomplete)
+
 (custom-autocomplete)
 ;; (require 'custom-autocomplete-c-headers)
 ;; (require 'custom-irony)
 (custom-irony)
 ;; (require 'custom-semantic)
 ;; (require 'custom-flymake-google)
-;; (require 'custom-flycheck)
 (custom-flycheck)
 (custom-flymake-google)
-;; (require 'custom-keys)
 (custom-keys)
-;; (require 'custom-yasnippet)
 (custom-yasnippet)
-;; (require 'custom-imenu)
 (custom-imenu)
-;; (require 'custom-other)
 (custom-other)
-(require 'rtf-mode)
-;; (require 'custom-org)
 (custom-org)
 (elscreen-start)
 (require 'multiple-cursors)
@@ -372,24 +345,10 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-;; (require 'custom-switch)
-;; ???
-;;   (add-to-list 'load-path "~/.emacs.d/emms/")
-;;         (require 'emms-setup)
-;;         (emms-standard)
-;;         (emms-default-players)
-;; (require 'emms-player-simple)
-;; (require 'emms-source-file)
-;; (require 'emms-source-playlist)
-;; (setq emms-player-list '(emms-player-mpg321
-;;                          emms-player-ogg123
-;;                          emms-player-mplayer))
-;; (setq emms-info-asynchronously nil)
-;; (setq emms-playlist-buffer-name "*Music*")
-;; ???
 (require 'color-theme-mac-classic)
 (color-theme-mac-classic)
 (nyan-mode)
+(ecb-activate)
 ;; (require 'eide)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
