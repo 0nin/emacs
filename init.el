@@ -3,8 +3,9 @@
 
 ;; Add comment according major mode
 (global-set-key (kbd "M-/") 'comment-dwim)
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-;; (add-to-list 'auto-mode-alist '("\\.mmf\\'" . asm-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . 'c++-mode))
+(add-to-list 'auto-mode-alist '("\\.c\\'" . 'c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cpp\\'" . 'c++-mode))
 (setq w32-pipe-read-delay 0)
 
 ;; (package-initialize)
@@ -101,14 +102,14 @@
   )
 
 (defun custom-bookmark ()
-  ;; (require 'bookmark)
-  ;; (setq bookmark-save-flag t) ;; автоматически сохранять закладки в файл
-  ;; (when (file-exists-p (concat user-emacs-directory "bookmarks"))
-  ;;   (bookmark-load bookmark-default-file t)) ;; попытаться найти и открыть файл с закладками
+  (require 'bookmark)
+  (setq bookmark-save-flag t) ;; автоматически сохранять закладки в файл
+  (when (file-exists-p (concat user-emacs-directory "bookmarks"))
+    (bookmark-load bookmark-default-file t)) ;; попытаться найти и открыть файл с закладками
   ;; (global-set-key (kbd "<f3>") 'bookmark-set) ;; создать закладку по F3 
   ;; (global-set-key (kbd "<f4>") 'bookmark-jump) ;; прыгнуть на закладку по F4
   ;; (global-set-key (kbd "<f5>") 'bookmark-bmenu-list) ;; открыть список закладок
-  ;; (setq bookmark-default-file (concat user-emacs-directory "bookmarks")) ;; хранить закладки в файл bookmarks в .emacs.d
+  (setq bookmark-default-file (concat user-emacs-directory "bookmarks")) ;; хранить закладки в файл bookmarks в .emacs.d
   )
 
 (defun custom-ggtags ()
@@ -135,7 +136,7 @@
 (defun custom-company ()
   ;; (require 'company)
   ; (require 'company-gtags)
-  (require 'cedet) ;; использую "вшитую" версию CEDET. Мне хватает...
+  (require 'cedet)
   (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
@@ -152,6 +153,8 @@
   (require 'company-yasnippet)
   (require 'semantic/bovine/gcc)
   (require 'semantic/ia)
+  (semantic-add-system-include "C:/Users/avs/mlx" 'c++-mode)
+  (semantic-add-system-include "C:/MinGW/include" 'c++-mode)
   (add-hook 'after-init-hook 'global-company-mode)
   (add-hook 'after-init-hook 'global-company-mode)
   (eval-after-load 'company
@@ -272,6 +275,8 @@
   (global-set-key (kbd "M-\\") 'back-to-indentation)
 
   (global-set-key (kbd "<f2>") 'bs-show)
+  (global-set-key (kbd "<f3>") 'semantic-ia-fast-jump)
+  (global-set-key (kbd "<f4>") 'semantic-analyze-proto-impl-toggle)
   (global-set-key (kbd "<f7>") 'kmacro-start-macro)
   (global-set-key (kbd "<f8>") 'kmacro-end-macro)
   (global-set-key (kbd "<f9>") 'kmacro-call-macro)
@@ -377,7 +382,9 @@
    (quote
     ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d9aaff4db65a545989c0976c759a44a16439cac7717f4e58cc01efc771d90449" default)))
  '(display-time-mode t)
+ '(ecb-auto-activate t)
  '(ecb-options-version "2.40")
+ '(ecb-tip-of-the-day nil)
  '(fci-rule-color "#14151E")
  '(show-paren-mode t)
  '(size-indication-mode t)
