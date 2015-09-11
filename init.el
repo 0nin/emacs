@@ -8,8 +8,7 @@
 (setq w32-pipe-read-delay 0)
 
 ;; (package-initialize)
-(add-to-list 'load-path "~/.emacs.d/custom")
-(add-to-list 'load-path "~/.emacs.d/3rd")
+(add-to-list 'load-path "~/.emacs.d/init")
 
 (defun custom-package ()
   (package-initialize)
@@ -32,7 +31,9 @@
       eide
       org
       color-theme
-      nyan-mode 
+      afternoon-theme
+      color-theme-sanityinc-tomorrow
+      nyan-mode
       flymake-google-cpplint
       google-c-style
       arduino-mode
@@ -88,6 +89,7 @@
   ;; Show-paren-mode settings
   (show-paren-mode t) ;; {},[],()
   (setq show-paren-style 'expression) ;; {},[],()
+  (toggle-truncate-lines)
 
   ;; IDO plugin
   (require 'ido)
@@ -199,7 +201,7 @@
 
   ;; (ede-cpp-root-project "81150_lbtp" :file "v:/81150/81150_final_lbtp/soft/lbtp.h"
   ;;                     :include-path '("c:/users/avs/mlx"))
-(ede-cpp-root-project "madmad2" :file "~/Documents/workspace/madmad2/src/main.cpp")
+;; (ede-cpp-root-project "madmad2" :file "~/Documents/workspace/madmad2/src/main.cpp")
   (global-semantic-idle-scheduler-mode 1)
   )
 
@@ -355,27 +357,59 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(require 'color-theme-mac-classic)
-(color-theme-mac-classic)
+;; (require 'color-theme-mac-classic)
+;; (color-theme-mac-classic)
 (nyan-mode)
-;; (ecb-activate)
-;; (require 'eide)
+;; (load-theme 'afternoon t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#eaeaea" "#d54e53" "DarkOliveGreen3" "#e7c547" "DeepSkyBlue1" "#c397d8" "#70c0b1" "#181a26"))
  '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (afternoon)))
+ '(custom-safe-themes
+   (quote
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d9aaff4db65a545989c0976c759a44a16439cac7717f4e58cc01efc771d90449" default)))
  '(display-time-mode t)
  '(ecb-options-version "2.40")
+ '(fci-rule-color "#14151E")
  '(show-paren-mode t)
  '(size-indication-mode t)
- '(tool-bar-mode nil))
+ '(tags-case-fold-search nil)
+ '(tool-bar-mode nil)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#d54e53")
+     (40 . "goldenrod")
+     (60 . "#e7c547")
+     (80 . "DarkOliveGreen3")
+     (100 . "#70c0b1")
+     (120 . "DeepSkyBlue1")
+     (140 . "#c397d8")
+     (160 . "#d54e53")
+     (180 . "goldenrod")
+     (200 . "#e7c547")
+     (220 . "DarkOliveGreen3")
+     (240 . "#70c0b1")
+     (260 . "DeepSkyBlue1")
+     (280 . "#c397d8")
+     (300 . "#d54e53")
+     (320 . "goldenrod")
+     (340 . "#e7c547")
+     (360 . "DarkOliveGreen3"))))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Anonymous Pro" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
+ '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))
  '(completions-common-part ((t (:inherit default :foreground "red"))))
  '(show-paren-match ((((class color) (background light)) (:background "azure2")))))
