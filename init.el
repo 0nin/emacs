@@ -3,9 +3,9 @@
 
 ;; Add comment according major mode
 (global-set-key (kbd "M-/") 'comment-dwim)
-(add-to-list 'auto-mode-alist '("\\.h\\'" . 'c++-mode))
-(add-to-list 'auto-mode-alist '("\\.c\\'" . 'c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cpp\\'" . 'c++-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
+;; (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
 (setq w32-pipe-read-delay 0)
 
 ;; (package-initialize)
@@ -114,23 +114,23 @@
 
 (defun custom-ggtags ()
   (require 'ggtags)
-  ;; (add-hook 'c-mode-common-hook
-  ;;           (lambda ()
-  ;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-  ;;               (ggtags-mode 1))))
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+                (ggtags-mode 1))))
 
-  ;; (ggtags-mode 1)
+  (ggtags-mode 1)
 
-  ;; (define-key ggtags-mode-map (kbd "C-c s") 'ggtags-find-other-symbol)
-  ;; (define-key ggtags-mode-map (kbd "C-c h") 'ggtags-view-tag-history)
-  ;; (define-key ggtags-mode-map (kbd "C-c r") 'ggtags-find-reference)
-  ;; (define-key ggtags-mode-map (kbd "C-c f") 'ggtags-find-file)
-  ;; (define-key ggtags-mode-map (kbd "C-c c") 'ggtags-create-tags)
-  ;; (define-key ggtags-mode-map (kbd "C-c u") 'ggtags-update-tags)
+  (define-key ggtags-mode-map (kbd "C-c s") 'ggtags-find-other-symbol)
+  (define-key ggtags-mode-map (kbd "C-c h") 'ggtags-view-tag-history)
+  (define-key ggtags-mode-map (kbd "C-c r") 'ggtags-find-reference)
+  (define-key ggtags-mode-map (kbd "C-c f") 'ggtags-find-file)
+  (define-key ggtags-mode-map (kbd "C-c c") 'ggtags-create-tags)
+  (define-key ggtags-mode-map (kbd "C-c u") 'ggtags-update-tags)
 
 
-  ;; (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
-  ;; (ggtags-mode)
+  (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+  (ggtags-mode)
   )
 
 (defun custom-company ()
@@ -153,7 +153,10 @@
   (require 'company-yasnippet)
   (require 'semantic/bovine/gcc)
   (require 'semantic/ia)
-  (semantic-add-system-include "C:/Users/avs/mlx" 'c++-mode)
+;;  (semantic-add-system-include "C:/Users/avs/mlx" 'c++-mode)
+  (semantic-add-system-include "C:/Users/avs/mlx/include" 'c++-mode)
+ ;; (semantic-add-system-include "C:/Users/avs/mlx/include/mlxtestlib" 'c++-mode)
+  (semantic-add-system-include "C:/Users/avs/mlx/log4cpp" 'c++-mode)
   (semantic-add-system-include "C:/MinGW/include" 'c++-mode)
   (add-hook 'after-init-hook 'global-company-mode)
   (add-hook 'after-init-hook 'global-company-mode)
@@ -168,7 +171,7 @@
   (defun my:ac-c-header-init ()
     (require 'auto-complete-c-headers)
     (add-to-list 'ac-sources 'ac-source-c-headers)
-    ;; (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include")
+    (add-to-list 'achead:include-directories '"C:/Users/avs/mlx/include")
     (semantic-mode 1)
     (global-ede-mode t)
   )
@@ -181,7 +184,6 @@
   (ac-config-default)
 
                                         ; let's define a function which initializes auto-complete-c-headers and gets called for c/c++ hooks
- )
                                         ; now let's call this function from c/c++ hooks
   (add-hook 'c++-mode-hook 'my:ac-c-header-init)
   (add-hook 'c-mode-hook 'my:ac-c-header-init)
@@ -197,16 +199,21 @@
   (defun my:add-semantic-to-autocomplete() 
     (add-to-list 'ac-sources 'ac-source-semantic)
     )
+
   (add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)
                                         ; turn on ede mode 
   (global-ede-mode 1)
 
 
-  ;; (ede-cpp-root-project "81150_lbtp" :file "v:/81150/81150_final_lbtp/soft/lbtp.h"
-  ;;                     :include-path '("c:/users/avs/mlx"))
+  (ede-cpp-root-project "81150_lbtp" :file "v:/81150/81150_final_lbtp/soft/lbtp.h"
+;;                        :include-path '("C:/users/avs/mlx")
+                        :include-path '("C:/Users/avs/mlx/include")
+;;                        :include-path '("C:/Users/avs/mlx/include/mlxtestlib")
+                        :include-path '("C:/Users/avs/mlx/log4cpp")
+                        :include-path '("C:/MinGW/include"))
 ;; (ede-cpp-root-project "madmad2" :file "~/Documents/workspace/madmad2/src/main.cpp")
   (global-semantic-idle-scheduler-mode 1)
-  )
+  ))
 
 (defun custom-irony ()
                                         ; define a function to start irony mode for c/c++ modes
@@ -280,7 +287,8 @@
   (global-set-key (kbd "<f7>") 'kmacro-start-macro)
   (global-set-key (kbd "<f8>") 'kmacro-end-macro)
   (global-set-key (kbd "<f9>") 'kmacro-call-macro)
-  (global-set-key (kbd "<f11>") 'ido-dired)
+  ;; (global-set-key (kbd "<f11>") 'ido-dired)
+  ;; (global-set-key (kbd "<f11>") 'book)
   (global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
   )
 
@@ -356,6 +364,7 @@
 (custom-imenu)
 (custom-other)
 (custom-org)
+(require 'lk-file-search)
 ;; (elscreen-start)
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -382,7 +391,7 @@
    (quote
     ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d9aaff4db65a545989c0976c759a44a16439cac7717f4e58cc01efc771d90449" default)))
  '(display-time-mode t)
- '(ecb-auto-activate t)
+ '(ecb-auto-activate nil)
  '(ecb-options-version "2.40")
  '(ecb-tip-of-the-day nil)
  '(fci-rule-color "#14151E")
