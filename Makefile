@@ -1,7 +1,7 @@
 RM = rm -rf
 MKDIR = mkdir
 CP = cp -R
-HOME = /home/onin
+HOME = /home/nin
 EMACS = $(HOME)/.emacs.d
 ERGO = $(EMACS)/ergoemacs
 3RD = 3rd
