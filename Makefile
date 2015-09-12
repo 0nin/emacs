@@ -4,7 +4,7 @@ CP = cp -R
 HOME = /home/nin
 EMACS = $(HOME)/.emacs.d
 ERGO = $(EMACS)/ergoemacs
-3RD = 3rd
+INIT = init
 TARGET = init.el
 ERGOMIRROR = https://github.com/0nin/ergoemacs.git
 HELPTEXT = "make install -- create .emacs.d make clean -- delete .emacs.d make help -- show this text"
@@ -12,7 +12,7 @@ HELPTEXT = "make install -- create .emacs.d make clean -- delete .emacs.d make h
 all:
 	$(MKDIR) $(EMACS)
 
-	$(CP) ./$(3RD) $(EMACS)/$(3RD)
+	$(CP) ./$(INIT) $(EMACS)/$(INIT)
 	$(CP) $(TARGET) $(EMACS)
 	# $(CP) ./ergoemacs $(EMACS)
 

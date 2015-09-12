@@ -151,51 +151,36 @@
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
-<<<<<<< HEAD
-=======
   (semantic-mode   t)
->>>>>>> 04c69d8f99ad449bb36dc705333277f7c46d47c3
   (global-ede-mode t)
-
   (require 'cc-mode)
   (require 'semantic)  
   (require 'ede/generic)
   (ede-enable-generic-projects)
   (require 'company-semantic)
   (require 'company-yasnippet)
-<<<<<<< HEAD
   (global-semanticdb-minor-mode 1)
   (global-semantic-idle-scheduler-mode 1)
   (setq semantic-c-obey-conditional-section-parsing-flag nil)
-=======
   (require 'semantic/bovine/gcc)
   (global-semanticdb-minor-mode 1)
   (global-semantic-idle-scheduler-mode 1)
->>>>>>> 04c69d8f99ad449bb36dc705333277f7c46d47c3
-  (semantic-add-system-include "C:/Users/avs/mlx/include" 'c++-mode)
-  (semantic-add-system-include "C:/Users/avs/mlx/log4cpp" 'c++-mode)
-  (semantic-add-system-include "C:/MinGW/include" 'c++-mode)
-  (semantic-add-system-include "/opt/mlx/include" 'c++-mode)
-  (semantic-add-system-include "/opt/mlx/log4cpp" 'c++-mode)
+  ;; (semantic-add-system-include "C:/Users/avs/mlx/include" 'c++-mode)
+  ;; (semantic-add-system-include "C:/Users/avs/mlx/log4cpp" 'c++-mode)
+  ;; (semantic-add-system-include "C:/MinGW/include" 'c++-mode)
+  ;; (semantic-add-system-include "/opt/mlx/include" 'c++-mode)
+  ;; (semantic-add-system-include "/opt/mlx/log4cpp" 'c++-mode)
   (add-hook 'after-init-hook 'global-company-mode)
   (add-hook 'c-mode-common-hook 'hs-minor-mode)
-<<<<<<< HEAD
-  ;;(setq-default tab-width 4) ;;!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-=======
-  (setq-default tab-width 4) ;;!!!!!!!!!!!!!!!!!!!!!!!!!!!!
->>>>>>> 04c69d8f99ad449bb36dc705333277f7c46d47c3
   (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony))  
+    '(add-to-list 'company-backends 'company-irony))
   ;; (delete 'company-semantic company-backends)
   ;; (define-key c-mode-map  [(tab)] 'company-complete)
   ;; (define-key c++-mode-map  [(tab)] 'company-complete)
   ;; (define-key c-mode-map  [C-tab] 'company-complete)
   ;; (define-key c++-mode-map  [C-tab] 'company-complete)
-<<<<<<< HEAD
-=======
   (semantic-mode 1)
   (global-ede-mode t)
->>>>>>> 04c69d8f99ad449bb36dc705333277f7c46d47c3
   (add-to-list 'company-backends 'company-c-headers))
 
 (defun setup-autocomplete ()
@@ -340,12 +325,9 @@
 (setup-ggtags)
 (setup-company)
 ;; (setup-autocomplete)
-(setup-irony)
-<<<<<<< HEAD
+;; (setup-irony)
 (setup-flycheck)
-=======
 ;; (setup-flycheck)
->>>>>>> 04c69d8f99ad449bb36dc705333277f7c46d47c3
 (setup-keys)
 (setup-yasnippet)
 ;; (setup-imenu)
@@ -358,28 +340,15 @@
 ;; (require 'color-theme-mac-classic)
 ;; (color-theme-mac-classic)
 (nyan-mode)
-<<<<<<< HEAD
-;; (eide-mode)
-;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file "/opt/mlx/include/mlxtestlib/configuration/config.h")
+;; (ecb-activate)
 
-
+;; Package: clean-aindent-mode
 ;; (require 'clean-aindent-mode)
 ;; (add-hook 'prog-mode-hook 'clean-aindent-mode)
 ;; (require 'dtrt-indent)
 ;; (dtrt-indent-mode 1)
 ;; (require 'ws-butler)
 ;; (add-hook 'prog-mode-hook 'ws-butler-mode)
-=======
-;; Package: clean-aindent-mode
-(require 'clean-aindent-mode)
-(add-hook 'prog-mode-hook 'clean-aindent-mode)
-;; Package: dtrt-indent
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
-;; Package: ws-butler
-(require 'ws-butler)
-(add-hook 'prog-mode-hook 'ws-butler-mode)
->>>>>>> 04c69d8f99ad449bb36dc705333277f7c46d47c3
 ;; (setup-org)
 
 (custom-set-variables
