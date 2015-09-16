@@ -317,7 +317,9 @@
   (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 )
 
-
+(defun lines ()
+  (interactive)
+  (toggle-truncate-lines))
 
 (setup-package)
 (setup-global)
