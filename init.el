@@ -1,11 +1,11 @@
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "us")
 (load-file "~/.emacs.d/ergoemacs/site-lisp/site-start.el")
-(add-to-list 'load-path "~/.emacs.d/init")
+;; (add-to-list 'load-path "~/.emacs.d/init")
 ;; (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 
 ;; Add comment according major mode
-(global-set-key (kbd "M-/") 'comment-dwim)
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; (global-set-key (kbd "M-/") 'comment-dwim)
+;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (setq w32-pipe-read-delay 0)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -319,10 +319,6 @@
   (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 )
 
-(defun lines ()
-  (interactive)
-  (toggle-truncate-lines))
-
 (setup-package)
 (setup-global)
 (setup-bookmark)
@@ -334,6 +330,11 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(defun lines ()
+  (interactive)
+  (toggle-truncate-lines))
+
 
 (defun activate ()
   (interactive)
