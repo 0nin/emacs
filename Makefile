@@ -1,7 +1,7 @@
 RM = rm -rfv
 MKDIR = mkdir
 CP = cp -Rv
-HOME = /home/nin
+HOME = /home/$(USER)
 EMACS = $(HOME)/.emacs.d
 ERGO = $(EMACS)/ergoemacs
 INIT = init
@@ -11,7 +11,7 @@ ERGOMIRROR = -b master --single-branch https://github.com/ergoemacs/ergoemacs-mo
 HELPTEXT = "make install -- create .emacs.d make clean -- delete .emacs.d make help -- show this text"
 
 install:
-	$(RM) $(EMACS)
+#	$(RM) $(EMACS)
 	$(MKDIR) $(EMACS)
 
 	$(CP) ./$(INIT) $(EMACS)/$(INIT)
