@@ -1,1 +1,2 @@
-# Tiny tool to quick setup my .emacs.d
+# Quick setup for .emacs.d
+Deprecated, keep for history
